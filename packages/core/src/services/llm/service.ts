@@ -1,7 +1,7 @@
 import { ILLMService, Message, StreamHandlers, ModelInfo, ModelOption } from './types';
 import { ModelConfig } from '../model/types';
 import { ModelManager, modelManager as defaultModelManager } from '../model/manager';
-import { APIError, RequestConfigError, ERROR_MESSAGES } from './errors';
+import { APIError, RequestConfigError } from './errors';
 import OpenAI from 'openai';
 import { GoogleGenerativeAI, GenerativeModel } from '@google/generative-ai';
 import { isVercel, getProxyUrl } from '../../utils/environment';
@@ -45,9 +45,9 @@ export class LLMService implements ILLMService {
     if (!modelConfig.provider) {
       throw new RequestConfigError('模型提供商不能为空');
     }
-    if (!modelConfig.apiKey) {
-      throw new RequestConfigError(ERROR_MESSAGES.API_KEY_REQUIRED);
-    }
+    // if (!modelConfig.apiKey) {
+    //   throw new RequestConfigError(ERROR_MESSAGES.API_KEY_REQUIRED);
+    // }
     if (!modelConfig.defaultModel) {
       throw new RequestConfigError('默认模型不能为空');
     }
@@ -312,7 +312,8 @@ export class LLMService implements ILLMService {
         model: modelConfig.defaultModel,
         messages: formattedMessages,
         temperature: 0.7,
-        stream: true
+        stream: true,
+        max_tokens: 512 * 8
       });
 
       console.log('成功获取到流式响应');
@@ -470,9 +471,9 @@ export class LLMService implements ILLMService {
       if (!modelConfig.baseURL) {
         throw new RequestConfigError('API URL不能为空');
       }
-      if (!modelConfig.apiKey) {
-        throw new RequestConfigError(ERROR_MESSAGES.API_KEY_REQUIRED);
-      }
+      // if (!modelConfig.apiKey) {
+      //   throw new RequestConfigError(ERROR_MESSAGES.API_KEY_REQUIRED);
+      // }
 
       let models: ModelInfo[] = [];
 
