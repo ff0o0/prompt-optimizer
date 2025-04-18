@@ -3,12 +3,13 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import path from 'path'
 
+const appName = 'promptOptimizerWeb'
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // 加载环境变量（从项目根目录加载）
   const env = loadEnv(mode, resolve(process.cwd(), '../../'))
-  const appName = 'promptOptimizerWeb'
-  
+
   return {
     base: process.env.NODE_ENV === 'production' ? `/${appName}/` : '/',
     plugins: [
@@ -63,7 +64,8 @@ export default defineConfig(({ mode }) => {
           acc[key] = env[key];
           return acc;
         }, {})
-      }
+      },
+      __LIBRARY_NAME__: JSON.stringify(appName)
     }
   }
 })

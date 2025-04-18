@@ -5,9 +5,10 @@ import App from './App.vue'
 import '@prompt-optimizer/ui/dist/style.css'
 import isInIcestark from '@ice/stark-app/lib/isInIcestark';
 import setLibraryName from '@ice/stark-app/lib/setLibraryName';
+import registerAppEnter from '@ice/stark-app/lib/registerAppEnter';
+import registerAppLeave from '@ice/stark-app/lib/registerAppLeave';
 import {createRouter, createWebHistory} from 'vue-router';
 import getBasename from '@ice/stark-app/lib/getBasename';
-import {registerAppEnter, registerAppLeave} from "@ice/stark-app";
 
 
 const routes = [
@@ -29,7 +30,7 @@ app.use(router)
 
 
 // 注意：`setLibraryName` 的入参需要与 webpack 工程配置的 output.library 保持一致
-setLibraryName('promptOptimizerWeb')
+setLibraryName(__LIBRARY_NAME__)
 
 export function mount({ container }) {
     // app = createApp(App);
