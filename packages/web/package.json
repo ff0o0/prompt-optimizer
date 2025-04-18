@@ -13,10 +13,12 @@
     "test:unit": "vitest run tests/unit"
   },
   "dependencies": {
+    "@ice/stark-app": "^1.5.0",
     "@prompt-optimizer/ui": "workspace:*",
     "element-plus": "^2.9.3",
     "uuid": "^11.0.5",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@pinia/testing": "^0.1.7",
@@ -26,12 +28,12 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
+    "js-yaml": "^4.1.0",
     "jsdom": "^26.0.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "vite": "^6.0.7",
-    "vitest": "^3.0.2",
-    "dotenv": "^16.4.7",
-    "js-yaml": "^4.1.0"
+    "vitest": "^3.0.2"
   }
-} 
+}

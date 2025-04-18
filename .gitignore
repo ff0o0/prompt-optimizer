@@ -36,3 +36,6 @@ dist-ssr
 .vscode
 .vercel
 *.code-workspace
+
+packages/web/promptOptimizerWeb.zip
+packages/web/promptOptimizerWeb/*

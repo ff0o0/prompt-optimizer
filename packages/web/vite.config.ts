@@ -7,9 +7,13 @@ import path from 'path'
 export default defineConfig(({ mode }) => {
   // 加载环境变量（从项目根目录加载）
   const env = loadEnv(mode, resolve(process.cwd(), '../../'))
+  const appName = 'promptOptimizerWeb'
   
   return {
-    plugins: [vue()],
+    base: process.env.NODE_ENV === 'production' ? `/${appName}/` : '/',
+    plugins: [
+        vue()
+    ],
     server: {
       port: 18181,
       host: true,
@@ -28,9 +32,16 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(__dirname, 'index.html')
         }
-      }
+      },
+      lib: {
+        entry: path.resolve(__dirname, './src/main.js'),
+        name: appName,
+        formats: ['umd']
+      },
+      outDir: path.resolve(__dirname, `./${appName}`),
     },
     publicDir: 'public',
+
     resolve: {
       preserveSymlinks: true,
       alias: {
@@ -38,7 +49,7 @@ export default defineConfig(({ mode }) => {
         '@prompt-optimizer/core': path.resolve(__dirname, '../core'),
         '@prompt-optimizer/ui': path.resolve(__dirname, '../ui'),
         '@prompt-optimizer/web': path.resolve(__dirname, '../web'),
-        '@prompt-optimizer/extension': path.resolve(__dirname, '../extension')
+        '@prompt-optimizer/extension': path.resolve(__dirname, '../extension'),
       }
     },
     optimizeDeps: {
