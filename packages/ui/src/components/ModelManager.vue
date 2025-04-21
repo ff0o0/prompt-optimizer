@@ -571,7 +571,8 @@ const handleFetchEditingModels = async () => {
     }
     
     // 检查必要的参数
-    if (!apiKey || !baseURL) {
+    // if (!apiKey || !baseURL) {
+    if (!baseURL) {
       toast.error(t('modelManager.needApiKeyAndBaseUrl'));
       return;
     }
@@ -629,7 +630,8 @@ const handleFetchNewModels = async () => {
   const provider = newModel.value.key || 'custom';
   
   // 检查必要的参数
-  if (!apiKey || !baseURL) {
+  // if (!apiKey || !baseURL) {
+  if (!baseURL) {
     toast.error(t('modelManager.needApiKeyAndBaseUrl'));
     return;
   }
